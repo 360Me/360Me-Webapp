@@ -1,6 +1,6 @@
 # 360Me Web App
 
-**Note: This does not run right now - this commit just to show basic structure (which will definitely change)**
+Modern web app built on Facebook's Flux/React articheture.
 
 ## Getting Started
 
