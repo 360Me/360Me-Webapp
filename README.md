@@ -1,6 +1,6 @@
 # 360Me Web App
 
-**Note: This does not run right now - this commit just to show basic structure (which will definetly change)**
+**Note: This does not run right now - this commit just to show basic structure (which will definitely change)**
 
 ## Getting Started
 
