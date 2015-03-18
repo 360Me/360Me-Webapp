@@ -1,0 +1,47 @@
+{
+  "name": "360Me-Webapp",
+  "version": "0.2.0",
+  "description": "360Me web app based off of essential-react starter template.",
+  "main": "src/main.jsx",
+  "scripts": {
+    "server": "node server.js",
+    "build": "webpack -p --config webpack.production.config.js",
+    "test": "PHANTOMJS_BIN=./node_modules/.bin/phantomjs ./node_modules/karma/bin/karma start karma.config.js",
+    "coveralls": "cat coverage/lcov.info | coveralls",
+    "clean": "rm build/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/360Me/360Me-Webapp.git"
+  },
+  "keywords": [],
+  "author": "Tim Kendall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/360Me/360Me-Webapp/issues"
+  },
+  "homepage": "https://github.com/360Me/360Me-Webapp",
+  "devDependencies": {
+    "babel-core": "^4.7.8",
+    "babel-loader": "^4.1.0",
+    "coveralls": "^2.11.2",
+    "express": "^4.12.2",
+    "istanbul": "^0.3.7",
+    "istanbul-instrumenter-loader": "^0.1.2",
+    "karma": "^0.12.31",
+    "karma-coverage": "^0.2.7",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon-chai": "^0.3.0",
+    "karma-webpack": "^1.5.0",
+    "phantomjs": "^1.9.16",
+    "react-hot-loader": "^1.2.3",
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "dependencies": {
+    "react": "^0.12.2",
+    "react-router": "^0.12.4",
+    "reflux": "^0.2.7"
+  }
+}
