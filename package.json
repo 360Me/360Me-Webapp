@@ -42,6 +42,7 @@
   "dependencies": {
     "react": "^0.12.2",
     "react-router": "^0.12.4",
-    "reflux": "^0.2.7"
+    "reflux": "^0.2.7",
+    "superagent": "^1.1.0"
   }
 }
