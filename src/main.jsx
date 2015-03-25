@@ -46,9 +46,9 @@ let App = React.createClass({
       <div>
         <ul>
           <li>{loginOrOut}</li>
-          <li><Link to="requests">Requests</Link> </li>
+          <li><Link to="requests">Requests</Link></li>
           <li><Link to="profile">Profile</Link></li>
-          <li><Link to="friends">Friends</Link></li>
+          <li><Link to="people">People</Link></li>
         </ul>
         <RouteHandler/>
       </div>
