@@ -12,7 +12,6 @@ let PeopleList = React.createClass({
     people: []
   },
 
-    initialize: function() { },
 
     componentDidMount: function() {
        /** Note - Store subscription handled in mixin */
@@ -30,7 +29,7 @@ let PeopleList = React.createClass({
           <ul>
             {this.props.people.map((person, i) => {
                 return (
-                  <li><PersonItem firstName={person.firstName} lastName={person.lastName} avatarUrl={person.avatar_url} isCoworker={person.isCoworker} id={person.id} key={person.id}></PersonItem></li>
+                  <li key={person.id}><PersonItem firstName={person.firstName} lastName={person.lastName} avatarUrl={person.avatar_url} isCoworker={person.isCoworker} id={person.id}></PersonItem></li>
                 );
             })}
           </ul>

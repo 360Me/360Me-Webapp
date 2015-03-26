@@ -30,14 +30,19 @@ let PersonItem = React.createClass({
 
     render: function() {
         let coworkerOrNot = this.props.isCoworker ?
-          <button onClick={this.handleRemoveCoworker}>Remove Co-Worker</button> :
-          <button onClick={this.handleAddCoworker}>Add Co-Worker</button>;
+          <button className="person-item-button person-item-button-remove" onClick={this.handleRemoveCoworker}>Remove Co-Worker</button> :
+          <button className="person-item-button" onClick={this.handleAddCoworker}>Add Co-Worker</button>;
         return (
-          <div>
-                <img src={this.props.avatar_url} />
+          <div className="person-item">
+                <div className="person-item-avatar">
+                  <img src={this.props.avatarUrl}/>
+                </div>
+                <div className="person-item-content">
                     <h4>{this.props.firstName} {this.props.lastName}</h4>
-                    {coworkerOrNot}
-                  </div>
+                    <h5>LinkedIn</h5>
+                </div>
+                {coworkerOrNot}
+              </div>
         )
     }
 });

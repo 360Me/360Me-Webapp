@@ -8,7 +8,7 @@ import Requests from "./modules/requests/components/main";
 import Profile from "./modules/profile/components/main";
 import People from "./modules/people/components/main";
 
-let { Route, RouteHandler, Link, State } = Router;
+let { Route, RouteHandler, Link, State, Redirect } = Router;
 
 /** Setup routes for app **/
 let getRoutes = function (app) {
@@ -18,10 +18,14 @@ let getRoutes = function (app) {
       <Route name="logout" handler={Logout}/>
       <Route name="requests" handler={Requests} />
       <Route name="profile" handler={Profile} />
+
+      /** Make /people an abstract route */
+      <Redirect from="people" to="/people/coworkers" />
       <Route name="people" handler={People}>
         <Route name="coworkers" handler={People} />
         <Route name="contacts" handler={People} />
       </Route>
+
     </Route>
   );
 }

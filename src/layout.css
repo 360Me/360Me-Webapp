@@ -2,3 +2,279 @@
  * Each component controls it own styles but we still need an overall
  * layout.css to position components (for now).
  */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0; padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+input:focus, button:focus {
+  outline: 0 !important;
+}
+
+body {
+  font-family:  "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  margin: 0; padding: 0;
+  color: #505050;
+}
+
+/*
+ * Naviagtion
+ */
+
+#navigation-view-header {
+  height: 55px;
+  padding: 0 20px;
+
+  background: #00B391;
+  border-bottom: 1px solid hsla(169,100%,24%, 1);
+  font-size: 16px;
+  color: #fff;
+  line-height: 55px;
+}
+
+#navigation-view {
+  position: fixed;
+  top: 0; left: 0;
+  width: 250px;
+  height: 100%;
+
+  background: #F3F2EE;
+  border-right: 1px solid #EAE9E5;
+}
+
+#navigation-view ul {
+  list-style: none;
+  margin: 0;
+}
+
+#navigation-view ul li a {
+  display: block;
+  padding: 27px 14px;
+
+  font-weight: normal;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  color: #555;
+}
+
+#navigation-view ul li a i {
+  margin-right: 14px;
+
+  font-size: 24px;
+  line-height: 24px;
+}
+
+#navigation-view ul li a.active {
+  color: #1a1a1a;
+  background: #fff;
+  border-top: 1px solid #EAE9E5;
+  border-bottom: 1px solid #EAE9E5;
+  position: relative;
+}
+
+#navigation-view ul li a.active:after {
+  content: "";
+  position: absolute;
+  top: 0; right: -1px;
+  z-index: 99;
+  height: 100%;
+  width: 1px;
+
+  background: #fff;
+}
+
+#naviagtion-view ul li a.active {
+  color: #fff;
+  background: #00B391;
+}
+
+/*
+ * Primary
+ */
+#primary-view {
+  position: fixed;
+  width: calc(100% - 250px);
+  top: 0; left: 251px;
+  height: 100%;
+  padding: 25px;
+
+  background: #fff;
+
+}
+
+/*
+ * Button styles
+ */
+.btn {
+  display: block;
+
+  color: #00B391;
+  border: 1px solid #00B391;
+  border-radius: 3px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.btn-logout {
+  width: 205px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #E26768;
+  border-color: #E26768;
+}
+
+/*
+ * List view
+ */
+
+.list-view, .list-view-header, .list-view-body {
+  width: 100%;
+}
+
+.list-view-header {
+  height: 55px;
+  position: absolute;
+  top: 0; left:0;
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+
+  border-bottom: 1px solid #EAE9E5;
+}
+
+.list-view-header .switcher {
+  margin: 0 20px 0 auto;
+}
+
+.list-view-header input[type="text"] {
+  margin: 0 auto 0 20px;
+  padding: 0 14px;
+
+  border-radius: 99px;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #C8C6C2;
+}
+
+.list-view-body {
+  margin-top: 55px;
+}
+
+/*
+ * PersonItem
+ */
+
+.person-item {
+  width: 100%;
+  padding: 14px 0;
+  border-bottom: 1px solid #EAE9E5;
+  display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+
+}
+
+.person-item-avatar {
+  display: inline-block;
+  margin-right: 14px;
+}
+.person-item-avatar img {
+  width: 42px; height: 42px;
+  display: inline-block;
+
+  border-radius: 99px;
+}
+
+.person-item-content {
+  display: inline-block;
+  margin-top: -4px;
+}
+
+.person-item-content h5 {
+  font-weight: 300;
+  color: #ccc;
+}
+
+.person-item-button {
+  height: 24px;
+  margin-left: auto;
+  padding: 0 8px;
+  line-height: 24px;
+
+  border: 1px solid #00B391;
+  border-radius: 3px;
+  background: none;
+  color: #00B391;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.person-item-button-remove {
+  background: #00B391;
+  color: #fff;
+}
+
+/*
+ * Switcher
+ */
+.switcher {
+  display: inline-block;
+  height: 28px;
+
+  border: 1px solid hsla(48,5%,77%,1);
+  border-radius: 3px;
+}
+
+.switcher-switch {
+  display: inline-block;
+  height: 28px;
+  margin-top: -1px;
+  padding: 0 14px;
+
+  border-right: 1px solid #EAE9E5;
+  color: hsla(48,5%,77%,1);
+  font-size: 14px;
+  line-height: 28px;
+}
+
+
+.switcher .switcher-switch.active {
+  color: #fff;
+  background: hsla(48,5%,47%,1);
+}
+
+.switcher .switcher-switch:first-child.active {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.switcher .switcher-switch:last-child.active {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.switcher-switch:last-child {
+   border-right: none;
+}

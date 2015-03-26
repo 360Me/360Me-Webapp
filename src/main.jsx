@@ -40,17 +40,27 @@ let App = React.createClass({
 
   render: function () {
     var loginOrOut = this.state.loggedIn ?
-      <Link to="logout">Log out</Link> :
+      <Link to="logout"><div className="btn btn-logout">Log out</div></Link> :
       <Link to="login">Sign in</Link>;
     return (
       <div>
-        <ul>
-          <li>{loginOrOut}</li>
-          <li><Link to="requests">Requests</Link></li>
-          <li><Link to="profile">Profile</Link></li>
-          <li><Link to="people">People</Link></li>
-        </ul>
-        <RouteHandler/>
+        <div id="navigation-view">
+          <div id="navigation-view-header">
+            360Me
+          </div>
+
+          <ul>
+            <li><Link to="requests" activeClassName="active"><i className="fa fa-inbox"></i> Requests</Link></li>
+            <li><Link to="profile" activeClassName="active"><i className="fa fa-pie-chart"></i> Results</Link></li>
+            <li><Link to="people" activeClassName="active"><i className="fa fa-user"></i> People</Link></li>
+          </ul>
+
+          {loginOrOut}
+        </div>
+
+        <div id="primary-view">
+          <RouteHandler/>
+        </div>
       </div>
     );
   }

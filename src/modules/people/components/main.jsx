@@ -15,32 +15,77 @@ let { Route, RouteHandler, Link, State } = Router;
 let People = React.createClass({
   mixins: [Authentication, Router.State, Reflux.ListenerMixin, Reflux.connect(PeopleStore)],
 
-  render: function () {
-    let filteredList;
+  /** Get a subset of state.people */
+  setInitialFilteredState: function (path) {
+     switch(path) {
+        case '/people/coworkers':
+          this.state._people = this.getCoworkers();
+          break;
+        default:
+          this.state._people = this.getContacts();
+      }
 
-    // Filter coworkers
-    switch(this.getPath()) {
-      case '/people/coworkers':
-        filteredList = this.state.people.filter(function(item){ return item.isCoworker; });
-        break;
-      case '/people/contacts':
-        filteredList = this.state.people.filter(function(item){ return !item.isCoworker; });
-        break;
-      default:
-        filteredList = this.state.people;
+    this.state.filteredList = this.state._people;
+  },
+
+  getCoworkers: function () {
+    return this.state.people.filter(function(item){ return item.isCoworker; });
+  },
+
+  getContacts: function () {
+    return this.state.people.slice(0);
+  },
+
+  pathChanged: function () {
+    return this.lastPath !== this.getPath();
+  },
+
+  filterList: function (event) {
+    var updatedList = this.state._people.slice(0);
+    updatedList = updatedList.filter(function(item){
+      var fullName  = item.firstName + " " + item.lastName;
+      return fullName.toLowerCase().search(
+        event.target.value.toLowerCase()) !== -1;
+    });
+
+    this.setState({filteredList: updatedList});
+  },
+
+   componentWillMount: function() {
+    let path = this.getPath();
+    // Set last path
+    this.lastPath = path;
+    // Set correct subset of people
+    this.setInitialFilteredState(path);
+    },
+
+
+  render: function () {
+
+    /** Handle tab switches */
+    if (this.pathChanged()) {
+      let path = this.getPath();
+      // Filter by subset
+      this.setInitialFilteredState(path);
+
+      this.lastPath = path;
     }
+
+
 
     return (
       <div className="list-view">
-        <div className="list-header">
+        <div className="list-view-header">
+          <input type="text" placeholder="Search" onChange={this.filterList}/>
+
           <div className="switcher">
-            <div className="switch"><Link to="coworkers">Co-Workers</Link></div>
-            <div className="switch"><Link to="contacts">Contacts</Link></div>
+            <Link to="coworkers" className="switcher-switch" activeClassName="active">Co-Workers</Link>
+            <Link to="contacts" className="switcher-switch" activeClassName="active">Contacts</Link>
           </div>
         </div>
 
-        <div className="list-body">
-          <PeopleList people={filteredList}></PeopleList>
+        <div className="list-view-body">
+          <PeopleList people={this.state.filteredList}></PeopleList>
         </div>
       </div>
     );
