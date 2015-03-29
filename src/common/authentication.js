@@ -1,24 +1,9 @@
-/*
- * Simple placeholder auth library.
- */
-function pretendRequest(email, pass, cb) {
-    setTimeout(function() {
-        if (email === 'joe@example.com' && pass === 'password1') {
-            cb({
-                authenticated: true,
-                token: Math.random().toString(36).substring(7),
-            });
-        } else {
-            cb({
-                authenticated: false
-            });
-        }
-    }, 0);
-}
+import Request from "superagent";
 
 function loggedIn() {
     return !!localStorage.token;
 }
+
 let Authentication = {
     statics: {
         willTransitionTo: function(transition) {
@@ -30,28 +15,37 @@ let Authentication = {
             }
         },
     },
-    login: function(email, pass, cb) {
-        cb = arguments[arguments.length - 1];
-        if (localStorage.token) {
-            if (cb) cb(true);
+
+    /**
+     * Take the token we got from LinkedIn OAuth and send to our API
+     * for confirmation. If it's a valid token, API will respond with
+     * user object.
+     **/
+    authenticate: function (token, cb) {
+      Request
+        .get('http://localhost:1337/auth/user')
+        .set('Accept', 'application/json')
+        .set('token', token)
+        .end((err, response) => {
+          let user = JSON.parse(response.text).user; // stupid
+          if (err) console.log(err);
+          else if (user) {
+            // So we can access globally
+            window.user = user;
+            // Save user to local storage
+            localStorage.token = user.token;
+            // Let app know we are logged in so it can reredner correct layout
             this.onChange(true);
-            return;
-        }
-        pretendRequest(email, pass, function(res) {
-            if (res.authenticated) {
-                localStorage.token = res.token;
-                if (cb) cb(true);
-                this.onChange(true);
-            } else {
-                if (cb) cb(false);
-                this.onChange(false);
-            }
-        }.bind(this));
+          }
+          cb(err, user);
+        });
     },
+
     getToken: function() {
         return localStorage.token;
     },
     logout: function(cb) {
+        delete window.user;
         delete localStorage.token;
         if (cb) cb();
         this.onChange(false);

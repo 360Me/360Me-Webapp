@@ -14,7 +14,6 @@ let Reviews = React.createClass({
       <div>
         <h1>Reviews</h1>
         <p>You made it!</p>
-        <p>{token}</p>
       </div>
     );
   }

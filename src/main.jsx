@@ -21,6 +21,8 @@ let { Route, RouteHandler, Link, State } = Router;
 
 /** Setup route app component */
 let App = React.createClass({
+  mixins: [ Router.Navigation ],
+
   getInitialState: function () {
     return {
       loggedIn: Authentication.loggedIn()
@@ -34,19 +36,24 @@ let App = React.createClass({
   },
 
   componentWillMount: function () {
+    // Redirect to /login
+    if (!this.state.loggedIn) this.transitionTo('login');
+
     Authentication.onChange = this.setStateOnAuth;
-    Authentication.login();
+  },
+
+  componentWillUpdate: function (nextProps, nextState) {
+    //if (!this.state.loggedIn) this.transitionTo('login');
   },
 
   render: function () {
-    var loginOrOut = this.state.loggedIn ?
-      <Link to="logout"><div className="btn btn-logout">Log out</div></Link> :
-      <Link to="login">Sign in</Link>;
-    return (
+    let userName = window.user ? window.user.firstName + " " + window.user.lastName : "";
+    // Show naviagtion if logged in
+    let loggedIn = (
       <div>
         <div id="navigation-view">
           <div id="navigation-view-header">
-            360Me
+            {userName}
           </div>
 
           <ul>
@@ -55,14 +62,25 @@ let App = React.createClass({
             <li><Link to="people" activeClassName="active"><i className="fa fa-user"></i> People</Link></li>
           </ul>
 
-          {loginOrOut}
+           <Link to="logout"><div className="btn btn-logout">Log out</div></Link>
         </div>
 
         <div id="primary-view">
           <RouteHandler/>
         </div>
       </div>
-    );
+      );
+
+    // Hide navigation if logged out
+    let loggedOut = (
+        <div id="full-screen-view">
+            <RouteHandler/>
+        </div>
+      );
+
+    // Render correct layout
+    let loginOrOut = this.state.loggedIn ? loggedIn : loggedOut;
+    return loginOrOut;
   }
 });
 

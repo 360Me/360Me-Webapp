@@ -14,7 +14,6 @@ let Requests = React.createClass({
       <div>
         <h1>Requests</h1>
         <p>You made it!</p>
-        <p>{token}</p>
       </div>
     );
   }

@@ -14,7 +14,6 @@ let Profile = React.createClass({
       <div>
         <h1>Profile</h1>
         <p>You made it!</p>
-        <p>{token}</p>
       </div>
     );
   }
