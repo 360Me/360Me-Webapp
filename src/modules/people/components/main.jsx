@@ -15,6 +15,18 @@ let { Route, RouteHandler, Link, State } = Router;
 let People = React.createClass({
   mixins: [Authentication, Router.State, Reflux.ListenerMixin, Reflux.connect(PeopleStore)],
 
+  /*
+   * Lifecycle methods
+   */
+
+  componentWillMount: function() {
+    let path = this.getPath();
+    // Set last path
+    this.lastPath = path;
+    // Set correct subset of people
+    this.setInitialFilteredState(path);
+  },
+
   /** Get a subset of state.people */
   setInitialFilteredState: function (path) {
      switch(path) {
@@ -27,6 +39,10 @@ let People = React.createClass({
 
     this.state.filteredList = this.state._people;
   },
+
+  /*
+   * Other methods
+   */
 
   getCoworkers: function () {
     return this.state.people.filter(function(item){ return item.isCoworker; });
@@ -50,15 +66,6 @@ let People = React.createClass({
 
     this.setState({filteredList: updatedList});
   },
-
-   componentWillMount: function() {
-    let path = this.getPath();
-    // Set last path
-    this.lastPath = path;
-    // Set correct subset of people
-    this.setInitialFilteredState(path);
-    },
-
 
   render: function () {
 

@@ -13,7 +13,6 @@ let Requests = React.createClass({
     return (
       <div>
         <h1>Requests</h1>
-        <p>You made it!</p>
       </div>
     );
   }

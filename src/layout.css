@@ -288,9 +288,16 @@ body {
   color: #ccc;
 }
 
+.person-item-button-container-right {
+  margin-left: auto;
+}
+
+.person-item-button-container-right .person-item-button {
+  margin-left: 10px;
+}
+
 .person-item-button {
   height: 24px;
-  margin-left: auto;
   padding: 0 8px;
   line-height: 24px;
 
@@ -348,4 +355,54 @@ body {
 
 .switcher-switch:last-child {
    border-right: none;
+}
+
+/*
+ * Modal
+ */
+
+.ReactModal__Overlay {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.5);
+
+  -webkit-perspective: 600;
+  perspective: 600;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transition: opacity 150ms ease-out;
+}
+
+.ReactModal__Content {
+  position: static;
+  border: none;
+  width: 100%;
+  max-width: 350px;
+  min-height: 450px;
+
+  -webkit-transform: scale(0.5) rotateX(-30deg);
+}
+
+.ReactModal__Content--after-open {
+  -webkit-transform: scale(1) rotateX(0deg);
+  transition: all 150ms ease-in;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content--before-close {
+  -webkit-transform: scale(0.5) rotateX(30deg);
+  transition: all 150ms ease-in;
 }

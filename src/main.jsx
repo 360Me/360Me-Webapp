@@ -58,7 +58,7 @@ let App = React.createClass({
 
           <ul>
             <li><Link to="requests" activeClassName="active"><i className="fa fa-inbox"></i> Requests</Link></li>
-            <li><Link to="profile" activeClassName="active"><i className="fa fa-pie-chart"></i> Results</Link></li>
+            <li><Link to="feedback" activeClassName="active"><i className="fa fa-pie-chart"></i> Feedback</Link></li>
             <li><Link to="people" activeClassName="active"><i className="fa fa-user"></i> People</Link></li>
           </ul>
 

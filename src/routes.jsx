@@ -8,6 +8,7 @@ import Login from "./modules/auth/components/login";
 import Requests from "./modules/requests/components/main";
 import Profile from "./modules/profile/components/main";
 import People from "./modules/people/components/main";
+import Feedback from "./modules/feedback/components/main";
 
 let { Route, RouteHandler, Link, State, Redirect, DefaultRoute } = Router;
 
@@ -20,6 +21,7 @@ let getRoutes = function (app) {
       <Route name="logout" handler={Logout}/>
       <Route name="requests" handler={Requests} />
       <Route name="profile" handler={Profile} />
+      <Route name="feedback" handler={Feedback} />
       <Route name="auth" handler={Auth} />
 
      // Make /people an abstract route
