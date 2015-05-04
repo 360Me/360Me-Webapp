@@ -1,6 +1,7 @@
 # 360Me Web App
 
 ![Build](https://travis-ci.org/360Me/360Me-Webapp.svg "Build")
+
 Modern web app built on Facebook's Flux/React articheture.
 
 ## Getting Started
