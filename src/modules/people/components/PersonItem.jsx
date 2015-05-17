@@ -1,8 +1,8 @@
 import React from "react";
 import Reflux from "reflux";
 import PeopleActions from "../actions/PeopleActions";
-import FeedbackForm from "../../feedback/components/FeedbackForm"
-import RequestFeedbackButton from "../../feedback/components/RequestFeedbackButton"
+import FeedbackForm from "../../feedback/components/FeedbackForm.jsx"
+import RequestFeedbackButton from "../../feedback/components/RequestFeedbackButton.jsx"
 import Modal from "react-modal";
 
 var appElement = document.getElementById('app');

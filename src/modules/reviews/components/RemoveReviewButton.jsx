@@ -6,10 +6,10 @@ import React from "react";
 var RemoveReviewButton = React.createClass({
   render() {
     return (
-      <button></button>
+      <button>Test</button>
     );
   }
 });
 
 
-export default { RemoveReviewButton }
+export default RemoveReviewButton

@@ -10,6 +10,10 @@
     "coveralls": "cat coverage/lcov.info | coveralls",
     "clean": "rm build/app.js"
   },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "unmockedModulePathPatterns": ["<rootDir>/node_modules/react"]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/360Me/360Me-Webapp.git"
@@ -28,22 +32,25 @@
     "express": "^4.12.2",
     "istanbul": "^0.3.7",
     "istanbul-instrumenter-loader": "^0.1.2",
+    "jest-cli": "^0.4.0",
+    "react-hot-loader": "^1.2.3",
+    "webpack": "^1.7.2",
+    "webpack-dev-server": "^1.7.0",
     "karma": "^0.12.31",
     "karma-coverage": "^0.2.7",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sauce-launcher": "^0.2.10",
     "karma-sinon-chai": "^0.3.0",
     "karma-webpack": "^1.5.0",
-    "phantomjs": "^1.9.16",
-    "react-hot-loader": "^1.2.3",
-    "webpack": "^1.7.2",
-    "webpack-dev-server": "^1.7.0"
+    "phantomjs": "^1.9.16"
   },
   "dependencies": {
     "radium": "^0.10.1",
     "react": "^0.12.2",
     "react-modal": "^0.1.1",
     "react-router": "^0.12.4",
+    "react-tools": "^0.13.2",
     "reflux": "^0.2.7",
     "superagent": "^1.1.0",
     "sweetalert": "^0.5.0"
